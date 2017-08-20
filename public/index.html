@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>首页</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.css"/>
+</head>
+<body>
+
+
+<div class="container" id="app">
+    <div class="navbar">
+        <div class="navbar-inner">
+            <a class="brand" href="#">Brand</a>
+            <ul class="nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="/code">Code</a></li>
+                <li><a href="/business">Business</a></li>
+                <li><a href="/download">Download</a></li>
+                <li><a href="/about">About</a></li>
+            </ul>
+
+            <form class="navbar-search pull-right">
+                <input type="text" class="search-query" placeholder="Search">
+            </form>
+        </div>
+    </div>
+
+    <div class="caption">
+        <p>hello world</p>
+    </div>
+    <ul>
+        <todo-item
+                v-for="item in todos"
+                v-bind:todo="item"
+                v-bind:key="item.id">
+        </todo-item>
+    </ul>
+
+    <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning!</strong> Best check yo self, you're not looking too good.
+    </div>
+
+    <div class="alert alert-success">{{ message }}</div>
+
+    <div class="btn-group">
+        <button class="btn">1</button>
+        <button class="btn">2</button>
+        <button class="btn">3</button>
+        <button class="btn">4</button>
+        <button class="btn">5</button>
+        <button class="btn">6</button>
+        <button class="btn">7</button>
+        <button class="btn">8</button>
+        <button class="btn">9</button>
+        <button class="btn">10</button>
+        <button class="btn">11</button>
+        <button class="btn">12</button>
+        <button class="btn">13</button>
+        <button class="btn">14</button>
+        <button class="btn">15</button>
+        <button class="btn">16</button>
+    </div>
+
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+    <button type="button" class="btn btn-default" @click="click">按钮</button>
+</div>
+
+
+</body>
+</html>
+<script src="vue.js"></script>
+<script src="jquery.js"></script>
+<script src="bootstrap/js/bootstrap.js"></script>
+<script>
+  //console.log('init');
+  Vue.component('todo-item', {
+    props: ['todo'],
+    template: '<li>{{ todo.text }}</li>'
+  });
+
+  var app = new Vue({
+    el: '#app',
+    data: {
+      message: '文字信息内容，可以是任何文字内容如果你愿意的话',
+      todos: [
+        {id: 0, text: '北京'},
+        {id: 1, text: '上海'},
+        {id: 2, text: '广州'},
+        {id: 3, text: '深圳'}
+      ]
+    },
+    methods: {
+      click: function (event) {
+        //alert('beautiful');
+        //console.log(event);
+        var len = this.todos.length;
+        var data = {id: len-1, text: '杭州'};
+        this.todos.push(data);
+      }
+    }
+  });
+
+
+</script>
